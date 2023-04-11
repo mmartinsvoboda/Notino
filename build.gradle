@@ -1,0 +1,29 @@
+buildscript {
+    ext.compose_ui_version = "1.4.1"
+    ext.desugar_version = "1.2.2"
+    ext.kotlin_version = "1.6.21"
+    ext.koin_version = "3.2.1"
+    ext.retrofit_version = "2.9.0"
+    ext.http_logging_version = "4.10.0"
+    ext.timber_version = "5.0.1"
+
+    ext {
+        compileSdkVersion = 33
+        minSdkVersion = 22
+        targetSdkVersion = 33
+    }
+
+    repositories {
+        google()
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:7.4.2'
+        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.7.0'
+    }
+}
+
+plugins {
+    id "org.jetbrains.kotlin.android" version "1.8.10" apply false
+}

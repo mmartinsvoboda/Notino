@@ -1,0 +1,52 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+
+def ext = rootProject.ext
+
+android {
+    namespace 'com.svoboda.network'
+    compileSdk ext.compileSdkVersion
+
+    defaultConfig {
+        minSdk ext.minSdkVersion
+        targetSdk ext.targetSdkVersion
+
+        buildConfigField "String", "API_URL", "\"https://my-json-server.typicode.com/\""
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+        }
+        release {
+            minifyEnabled true
+        }
+    }
+    compileOptions {
+        coreLibraryDesugaringEnabled = true
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+}
+
+dependencies {
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:$desugar_version")
+
+    implementation "io.insert-koin:koin-android:$koin_version"
+
+    // Retrofit
+    api "com.squareup.retrofit2:retrofit:$retrofit_version"
+    api "com.squareup.retrofit2:converter-gson:$retrofit_version"
+
+    // Http Client interceptor
+    api "com.squareup.okhttp3:logging-interceptor:$http_logging_version"
+
+    // Timber
+    api "com.jakewharton.timber:timber:$timber_version"
+}
