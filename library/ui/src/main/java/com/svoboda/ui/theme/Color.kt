@@ -1,4 +1,4 @@
-package com.svoboda.notino.ui.theme
+package com.svoboda.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

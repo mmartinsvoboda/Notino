@@ -17,20 +17,25 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.svoboda.products.domain.model.Product
+import com.svoboda.ui.FavoriteButton
 import com.svoboda.ui.RatingBar
 import com.svoboda.ui.RemoteImage
+import com.svoboda.ui.theme.LocalNotinoColors
+import com.svoboda.ui.theme.NotinoColors
+import kotlin.random.Random
 
 @Composable
 fun ProductCard(product: Product) {
     Column(
         modifier = Modifier.fillMaxWidth()
     ) {
-        IconButton(
+        FavoriteButton(
+            modifier = Modifier.align(Alignment.End),
             onClick = { /*TODO*/ },
-            modifier = Modifier.align(Alignment.End)
-        ) {
-            Icon(Icons.Default.Favorite, null)
-        }
+            isFavorite = Random.nextBoolean(),
+            defaultColor = LocalNotinoColors.current.tertiary,
+            favoriteColor = LocalNotinoColors.current.pink
+        )
         RemoteImage(
             url = product.imageUrl,
             contentDescription = product.name,
