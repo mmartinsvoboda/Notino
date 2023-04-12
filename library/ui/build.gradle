@@ -6,7 +6,7 @@ apply plugin: 'org.jetbrains.kotlin.android'
 def ext = rootProject.ext
 
 android {
-    namespace 'com.svoboda.feature.products'
+    namespace 'com.svoboda.ui'
     compileSdk ext.compileSdkVersion
 
     defaultConfig {
@@ -41,16 +41,13 @@ android {
 }
 
 dependencies {
-
-    implementation project(":library:products")
-    implementation project(":library:ui")
-
-    implementation "io.insert-koin:koin-android:$koin_version"
-
     implementation 'androidx.core:core-ktx:1.10.0'
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.6.1'
     implementation 'androidx.activity:activity-compose:1.7.0'
     implementation "androidx.compose.ui:ui:$compose_ui_version"
     implementation "androidx.compose.ui:ui-tooling-preview:$compose_ui_version"
     implementation 'androidx.compose.material:material:1.4.1'
+
+    // coil
+    implementation 'io.coil-kt:coil-compose:1.4.0'
 }

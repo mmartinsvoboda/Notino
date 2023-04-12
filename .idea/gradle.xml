@@ -17,6 +17,7 @@
             <option value="$PROJECT_DIR$/library/local" />
             <option value="$PROJECT_DIR$/library/network" />
             <option value="$PROJECT_DIR$/library/products" />
+            <option value="$PROJECT_DIR$/library/ui" />
           </set>
         </option>
       </GradleProjectSettings>
