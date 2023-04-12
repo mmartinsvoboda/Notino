@@ -1,18 +1,8 @@
 package com.svoboda.ui.theme
 
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.graphics.Color
-
-private val DarkColorPalette = darkColors(
-    primary = InkPrimary,
-    primaryVariant = InkPrimary,
-    secondary = InkSecondary,
-    secondaryVariant = InkTertiary
-)
 
 private val LightColorPalette = lightColors(
     primary = InkPrimary,
@@ -22,15 +12,9 @@ private val LightColorPalette = lightColors(
 )
 
 @Composable
-fun NotinoTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable () -> Unit) {
-    val colors = if (darkTheme) {
-        DarkColorPalette
-    } else {
-        LightColorPalette
-    }
-
+fun NotinoTheme(content: @Composable () -> Unit) {
     MaterialTheme(
-        colors = colors,
+        colors = LightColorPalette,
         typography = Typography,
         shapes = Shapes,
         content = content

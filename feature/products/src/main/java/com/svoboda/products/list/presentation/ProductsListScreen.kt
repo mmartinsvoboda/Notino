@@ -16,6 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.svoboda.products.list.presentation.compose.ProductCard
+import com.svoboda.ui.theme.Typography
 
 @Composable
 fun ProductsListScreen(viewModel: ProductsListViewModel) {
@@ -26,7 +27,11 @@ fun ProductsListScreen(viewModel: ProductsListViewModel) {
             TopAppBar(
                 title = {
                     Box(modifier = Modifier.fillMaxSize()) {
-                        Text(text = "Produkty", modifier = Modifier.align(Alignment.Center))
+                        Text(
+                            text = "Produkty",
+                            modifier = Modifier.align(Alignment.Center),
+                            style = Typography.body1
+                        )
                     }
                 },
                 backgroundColor = Color.White,
