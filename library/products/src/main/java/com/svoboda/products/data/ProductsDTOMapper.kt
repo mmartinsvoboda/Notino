@@ -1,7 +1,7 @@
 package com.svoboda.products.data
 
-import com.svoboda.products.model.Price
-import com.svoboda.products.model.Product
+import com.svoboda.products.domain.model.Price
+import com.svoboda.products.domain.model.Product
 
 private const val IMAGE_URL = "https://i.notino.com/detail_zoom/"
 

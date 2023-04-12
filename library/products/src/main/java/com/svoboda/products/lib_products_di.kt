@@ -1,8 +1,9 @@
 package com.svoboda.products
 
 import com.svoboda.products.data.ProductsApi
-import com.svoboda.products.domain.GetProducts
-import com.svoboda.products.domain.ProductsRepository
+import com.svoboda.products.data.ProductsRepositoryImpl
+import com.svoboda.products.domain.usecases.GetProducts
+import com.svoboda.products.domain.repository.ProductsRepository
 import kotlinx.coroutines.Dispatchers
 import org.koin.dsl.module
 import retrofit2.Retrofit
@@ -10,7 +11,7 @@ import retrofit2.Retrofit
 val productsModule = module {
     factory { provideProductsApi(get()) }
     factory<ProductsRepository> {
-        com.svoboda.products.data.ProductsRepository(
+        ProductsRepositoryImpl(
             api = get(),
             dispatcher = Dispatchers.IO
         )

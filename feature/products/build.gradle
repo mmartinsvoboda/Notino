@@ -1,16 +1,17 @@
-plugins {
-    id 'com.android.application'
-    id 'org.jetbrains.kotlin.android'
-}
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'org.jetbrains.kotlin.android'
+
+def ext = rootProject.ext
 
 android {
-    namespace 'com.svoboda.products'
-    compileSdk 33
+    namespace 'com.svoboda.feature.products'
+    compileSdk ext.compileSdkVersion
 
     defaultConfig {
-        applicationId "com.svoboda.products"
-        minSdk 24
-        targetSdk 33
+        minSdk ext.minSdkVersion
+        targetSdk ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
 
@@ -24,6 +25,7 @@ android {
         }
     }
     compileOptions {
+        coreLibraryDesugaringEnabled = true
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }

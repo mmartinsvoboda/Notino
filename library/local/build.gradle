@@ -6,7 +6,7 @@ apply plugin: 'org.jetbrains.kotlin.android'
 def ext = rootProject.ext
 
 android {
-    namespace 'com.svoboda.products'
+    namespace 'com.svoboda.local'
     compileSdk ext.compileSdkVersion
 
     defaultConfig {
@@ -35,8 +35,11 @@ android {
 }
 
 dependencies {
-    implementation project(":library:network")
-    implementation project(':library:local')
+    // Room
+    implementation "androidx.room:room-runtime:2.5.1"
+    kapt "androidx.room:room-compiler:2.5.1"
+    implementation "androidx.room:room-ktx:2.5.1"
 
+    // Koin
     implementation "io.insert-koin:koin-android:$koin_version"
 }

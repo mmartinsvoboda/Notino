@@ -37,18 +37,9 @@ android {
 }
 
 dependencies {
-    implementation 'androidx.core:core-ktx:1.10.0'
-    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:$desugar_version")
-
     implementation "io.insert-koin:koin-android:$koin_version"
 
     // Retrofit
     api "com.squareup.retrofit2:retrofit:$retrofit_version"
     api "com.squareup.retrofit2:converter-gson:$retrofit_version"
-
-    // Http Client interceptor
-    api "com.squareup.okhttp3:logging-interceptor:$http_logging_version"
-
-    // Timber
-    api "com.jakewharton.timber:timber:$timber_version"
 }
