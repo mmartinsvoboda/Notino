@@ -14,7 +14,8 @@ fun RatingBar(
     modifier: Modifier = Modifier,
     rating: Int = 0,
     stars: Int = 5,
-    starsColor: Color = Color.Yellow,
+    emptyStarsColor: Color = Color(0xFFEEEEEE),
+    starsColor: Color = Color(0xFF333333),
 ) {
     val unfilledStars = stars - rating
     Row(modifier = modifier) {
@@ -23,9 +24,9 @@ fun RatingBar(
         }
         repeat(unfilledStars) {
             Icon(
-                imageVector = Icons.Outlined.StarOutline,
+                imageVector = Icons.Outlined.Star,
                 contentDescription = null,
-                tint = starsColor
+                tint = emptyStarsColor
             )
         }
     }

@@ -56,9 +56,7 @@ fun ProductCard(product: Product) {
         )
         RatingBar(
             modifier = Modifier.align(Alignment.CenterHorizontally),
-            rating = product.reviewScore,
-            stars = 5,
-            starsColor = Color.Black
+            rating = product.reviewScore
         )
         Text(
             text = "od ${product.price.value} ${product.price.currency}",

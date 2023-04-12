@@ -10,7 +10,11 @@ class ProductsRepositoryImpl(
     private val dispatcher: CoroutineDispatcher
 ) : ProductsRepository {
     override suspend fun getProducts(): List<Product> = withContext(dispatcher) {
-        val products = api.getProducts()
+        val products = try {
+            api.getProducts()
+        } catch (_: Throwable) {
+            ProductsDTO(emptyList())
+        }
 
         products.products.map {
             it.toProduct()

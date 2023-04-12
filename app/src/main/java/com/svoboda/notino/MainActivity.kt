@@ -7,6 +7,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.ui.Modifier
+import com.svoboda.notino.ui.theme.LocalNotinoColors
+import com.svoboda.notino.ui.theme.NotinoColors
 import com.svoboda.notino.ui.theme.NotinoTheme
 import com.svoboda.products.list.presentation.ProductsListScreen
 import com.svoboda.products.list.presentation.ProductsListViewModel
@@ -20,12 +22,14 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             NotinoTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background
-                ) {
-                    ProductsListScreen(viewModel = viewModel)
+                NotinoColors(colors = MaterialTheme.colors) {
+                    // A surface container using the 'background' color from the theme
+                    Surface(
+                        modifier = Modifier.fillMaxSize(),
+                        color = MaterialTheme.colors.background
+                    ) {
+                        ProductsListScreen(viewModel = viewModel)
+                    }
                 }
             }
         }
