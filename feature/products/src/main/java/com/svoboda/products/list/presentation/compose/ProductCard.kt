@@ -71,8 +71,6 @@ fun ProductCard(
             style = Typography.body2
         )
 
-        Spacer(modifier = Modifier.height(12.dp))
-
         Text(
             text = productWithFavoriteInfo.product.annotation,
             modifier = Modifier.fillMaxWidth(),
