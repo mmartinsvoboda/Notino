@@ -1,7 +1,7 @@
 package com.svoboda.products.data
 
-import com.svoboda.products.domain.repository.ProductsRepository
 import com.svoboda.products.domain.model.Product
+import com.svoboda.products.domain.repository.ProductsRepository
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
 

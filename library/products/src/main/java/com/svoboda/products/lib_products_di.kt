@@ -4,9 +4,9 @@ import com.svoboda.database.data.FavoriteProductRepositoryImpl
 import com.svoboda.database.domain.repository.FavoriteProductRepository
 import com.svoboda.products.data.ProductsApi
 import com.svoboda.products.data.ProductsRepositoryImpl
-import com.svoboda.products.domain.usecases.GetProducts
 import com.svoboda.products.domain.repository.ProductsRepository
 import com.svoboda.products.domain.usecases.DeleteFavoriteProduct
+import com.svoboda.products.domain.usecases.GetProducts
 import com.svoboda.products.domain.usecases.ObserveFavoriteProduct
 import com.svoboda.products.domain.usecases.SetFavoriteProduct
 import kotlinx.coroutines.Dispatchers

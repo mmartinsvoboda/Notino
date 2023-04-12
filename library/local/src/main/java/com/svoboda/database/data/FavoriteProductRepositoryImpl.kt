@@ -4,7 +4,8 @@ import com.svoboda.database.domain.model.FavoriteProduct
 import com.svoboda.database.domain.repository.FavoriteProductRepository
 import kotlinx.coroutines.flow.Flow
 
-class FavoriteProductRepositoryImpl(private val dao: FavoriteProductDao) : FavoriteProductRepository {
+class FavoriteProductRepositoryImpl(private val dao: FavoriteProductDao) :
+    FavoriteProductRepository {
 
     override fun observeFavoriteProducts(productId: Int): Flow<Int?> {
         return dao.getProductById(productId)
