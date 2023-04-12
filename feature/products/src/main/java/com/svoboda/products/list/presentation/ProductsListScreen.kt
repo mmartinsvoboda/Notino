@@ -46,8 +46,11 @@ fun ProductsListScreen(viewModel: ProductsListViewModel) {
             horizontalArrangement = Arrangement.spacedBy(8.dp),
             contentPadding = PaddingValues(20.dp)
         ) {
-            items(products.value) { product ->
-                ProductCard(product)
+            items(products.value) { productWithFavoriteInfo ->
+                ProductCard(
+                    productWithFavoriteInfo = productWithFavoriteInfo,
+                    onProductLikeClicked = viewModel::changeProductFavoriteState
+                )
             }
         }
 

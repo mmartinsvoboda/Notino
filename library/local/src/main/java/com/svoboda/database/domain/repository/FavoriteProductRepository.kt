@@ -4,7 +4,10 @@ import kotlinx.coroutines.flow.Flow
 
 interface FavoriteProductRepository {
 
-    // Observes favorite products
+    // Observes all favorite products
+    fun observeAllFavoriteProducts(): Flow<List<Int>>
+
+    // Observes favorite product by id
     fun observeFavoriteProducts(productId: Int): Flow<Int?>
 
     // Adds product to favorites
