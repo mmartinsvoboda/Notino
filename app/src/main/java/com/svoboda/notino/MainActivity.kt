@@ -13,10 +13,21 @@ import com.svoboda.ui.theme.NotinoColors
 import com.svoboda.ui.theme.NotinoTheme
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
+/**
+ * The main activity of the application, responsible for hosting the [ProductsListScreen].
+ * It sets up the theme and colors for the application, and provides the [ProductsListViewModel].
+ */
 class MainActivity : ComponentActivity() {
 
     private val viewModel: ProductsListViewModel by viewModel()
 
+    /**
+     * Called when the activity is starting. This is where most initialization should go.
+     *
+     * @param savedInstanceState If the activity is being re-initialized after previously
+     * being shut down, then this Bundle contains the data it most recently supplied in
+     * [onSaveInstanceState]. Otherwise, it is null.
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
