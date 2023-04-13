@@ -1,7 +1,7 @@
 package com.svoboda.architecture.extensions
 
-import com.svoboda.architecture.UiState
 import com.svoboda.architecture.Result
+import com.svoboda.architecture.UiState
 
 /**
  * Converts a [Result] to a corresponding [UiState] by applying given predicates for custom empty

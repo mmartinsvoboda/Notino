@@ -92,7 +92,11 @@ inline fun <T, R> Result<T>.transform(block: (value: T) -> Result<R>): Result<R>
  * Result [r1] has higher priority in error/failure resolving - its [Result.Error.throwable]/[Result.Failure.message] is propagated directly if it is
  * not [Result.Success]. Whether the [r2] is [Result.Success], [Result.Failure] or [Result.Error] is solved only if [r1] is [Result.Success]
  */
-inline fun <T1, T2, R> combine(r1: Result<T1>, r2: Result<T2>, map: (result1: T1, result2: T2) -> R): Result<R> =
+inline fun <T1, T2, R> combine(
+    r1: Result<T1>,
+    r2: Result<T2>,
+    map: (result1: T1, result2: T2) -> R
+): Result<R> =
     when (r1) {
         is Result.Error -> Result.error(r1.throwable)
         is Result.Failure -> Result.failure(r1.message)
