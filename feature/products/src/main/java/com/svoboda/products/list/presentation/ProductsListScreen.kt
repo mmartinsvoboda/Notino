@@ -60,7 +60,8 @@ fun ProductsListScreen(viewModel: ProductsListViewModel) {
                         ProductCard(
                             product = product,
                             onProductLikeClicked = viewModel::changeProductFavoriteState,
-                            productFavoriteStateFlow = viewModel.getFavoriteFlowOfProduct(product.productId)
+                            productFavoriteStateFlow = viewModel.getFavoriteFlowOfProduct(product.productId),
+                            modifier = Modifier.width(164.dp)
                         )
                     }
                 }

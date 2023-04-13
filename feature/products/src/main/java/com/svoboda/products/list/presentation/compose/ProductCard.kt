@@ -31,9 +31,10 @@ import kotlin.random.Random
 fun ProductCard(
     product: Product,
     onProductLikeClicked: (productId: Int) -> Unit,
-    productFavoriteStateFlow: Flow<Boolean>
+    productFavoriteStateFlow: Flow<Boolean>,
+    modifier: Modifier = Modifier
 ) {
-    Column(modifier = Modifier.width(164.dp)) {
+    Column(modifier = modifier) {
         FavoriteSection(
             onProductLikeClicked = onProductLikeClicked,
             productFavoriteStateFlow = productFavoriteStateFlow,
