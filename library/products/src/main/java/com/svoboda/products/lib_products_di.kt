@@ -29,6 +29,7 @@ val libProductsModule = module {
     factory { ObserveFavoriteProduct(get()) }
     factory { SetFavoriteProduct(get()) }
     factory { DeleteFavoriteProduct(get()) }
+    factory { SwitchFavoriteProductState(get(), get(), get()) }
 }
 
 fun provideProductsApi(retrofit: Retrofit): ProductsApi = retrofit.create(ProductsApi::class.java)

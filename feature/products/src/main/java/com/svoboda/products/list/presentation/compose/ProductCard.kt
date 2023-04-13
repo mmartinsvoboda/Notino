@@ -13,19 +13,21 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.svoboda.products.domain.model.ProductWithFavoriteInfo
+import com.svoboda.products.domain.model.Product
 import com.svoboda.ui.FavoriteButton
 import com.svoboda.ui.NotinoButton
 import com.svoboda.ui.RatingBar
 import com.svoboda.ui.RemoteImage
 import com.svoboda.ui.theme.LocalNotinoColors
 import com.svoboda.ui.theme.Typography
+import kotlinx.coroutines.flow.Flow
 import kotlin.random.Random
 
 @Composable
 fun ProductCard(
-    productWithFavoriteInfo: ProductWithFavoriteInfo,
-    onProductLikeClicked: (productId: Int, isFavorite: Boolean) -> Unit
+    product: Product,
+    onProductLikeClicked: (productId: Int) -> Unit,
+    productFavoriteStateFlow: Flow<Boolean>
 ) {
     Column(
         modifier = Modifier.fillMaxWidth()
@@ -33,19 +35,16 @@ fun ProductCard(
         FavoriteButton(
             modifier = Modifier.align(Alignment.End),
             onClick = {
-                onProductLikeClicked(
-                    productWithFavoriteInfo.product.productId,
-                    productWithFavoriteInfo.isFavorite
-                )
+                onProductLikeClicked(product.productId)
             },
-            isFavorite = productWithFavoriteInfo.isFavorite,
+            isFavoriteFlow = productFavoriteStateFlow,
             defaultColor = LocalNotinoColors.current.tertiary,
             favoriteColor = LocalNotinoColors.current.pink
         )
 
         RemoteImage(
-            url = productWithFavoriteInfo.product.imageUrl,
-            contentDescription = productWithFavoriteInfo.product.name,
+            url = product.imageUrl,
+            contentDescription = product.name,
             modifier = Modifier
                 .height(160.dp)
                 .fillMaxWidth(),
@@ -55,7 +54,7 @@ fun ProductCard(
         Spacer(modifier = Modifier.height(12.dp))
 
         Text(
-            text = productWithFavoriteInfo.product.brandName,
+            text = product.brandName,
             modifier = Modifier.fillMaxWidth(),
             textAlign = TextAlign.Center,
             style = Typography.caption,
@@ -65,14 +64,14 @@ fun ProductCard(
         Spacer(modifier = Modifier.height(4.dp))
 
         Text(
-            text = productWithFavoriteInfo.product.name,
+            text = product.name,
             modifier = Modifier.fillMaxWidth(),
             textAlign = TextAlign.Center,
             style = Typography.body2
         )
 
         Text(
-            text = productWithFavoriteInfo.product.annotation,
+            text = product.annotation,
             modifier = Modifier.fillMaxWidth(),
             textAlign = TextAlign.Center,
             style = Typography.caption
@@ -84,13 +83,13 @@ fun ProductCard(
             modifier = Modifier
                 .align(Alignment.CenterHorizontally)
                 .height(16.dp),
-            rating = productWithFavoriteInfo.product.reviewScore
+            rating = product.reviewScore
         )
 
         Spacer(modifier = Modifier.height(12.dp))
 
         Text(
-            text = "od ${productWithFavoriteInfo.product.price.value} ${productWithFavoriteInfo.product.price.currency}",
+            text = "od ${product.price.value} ${product.price.currency}",
             modifier = Modifier.fillMaxWidth(),
             textAlign = TextAlign.Center,
             style = Typography.body2

@@ -2,35 +2,35 @@ package com.svoboda.products.list.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.svoboda.products.domain.model.ProductWithFavoriteInfo
-import com.svoboda.products.domain.usecases.DeleteFavoriteProduct
-import com.svoboda.products.domain.usecases.GetProductsWithFavoriteInfo
-import com.svoboda.products.domain.usecases.ObserveFavoriteProduct
-import com.svoboda.products.domain.usecases.SetFavoriteProduct
+import com.svoboda.products.domain.model.Product
+import com.svoboda.products.domain.usecases.GetProducts
+import com.svoboda.products.domain.usecases.ObserveAllFavoriteProducts
+import com.svoboda.products.domain.usecases.SwitchFavoriteProductState
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
 class ProductsListViewModel(
-    private val getProductsWithFavoriteInfo: GetProductsWithFavoriteInfo,
-    private val observeFavoriteProduct: ObserveFavoriteProduct,
-    private val setFavoriteProduct: SetFavoriteProduct,
-    private val deleteFavoriteProduct: DeleteFavoriteProduct
+    private val getProducts: GetProducts,
+    private val observeAllFavoriteProducts: ObserveAllFavoriteProducts,
+    private val switchFavoriteProductState: SwitchFavoriteProductState
 ) : ViewModel() {
 
-    val products: MutableStateFlow<List<ProductWithFavoriteInfo>> = MutableStateFlow(emptyList())
+    val products: MutableStateFlow<List<Product>> = MutableStateFlow(emptyList())
+    private val favoriteProducts: MutableStateFlow<List<Int>> = MutableStateFlow(emptyList())
 
     init {
         viewModelScope.launch {
-            getProductsWithFavoriteInfo().collect {
-                products.value = it
+            products.value = getProducts()
+            observeAllFavoriteProducts().collect {
+                favoriteProducts.value = it
             }
         }
     }
 
-    fun changeProductFavoriteState(productId: Int, isFavorite: Boolean) = viewModelScope.launch {
-        if (isFavorite)
-            deleteFavoriteProduct(productId)
-        else
-            setFavoriteProduct(productId)
+    fun getFavoriteFlowOfProduct(productId: Int) = favoriteProducts.map { it.contains(productId) }
+
+    fun changeProductFavoriteState(productId: Int) = viewModelScope.launch {
+        switchFavoriteProductState(productId)
     }
 }

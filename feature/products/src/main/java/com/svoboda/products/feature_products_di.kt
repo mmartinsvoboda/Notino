@@ -5,5 +5,5 @@ import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val productsModule = libProductsModule + module {
-    viewModel { ProductsListViewModel(get(), get(), get(), get()) }
+    viewModel { ProductsListViewModel(get(), get(), get()) }
 }
