@@ -33,7 +33,7 @@ fun ProductCard(
     onProductLikeClicked: (productId: Int) -> Unit,
     productFavoriteStateFlow: Flow<Boolean>
 ) {
-    Column(modifier = Modifier.fillMaxWidth()) {
+    Column(modifier = Modifier.width(164.dp)) {
         FavoriteSection(
             onProductLikeClicked = onProductLikeClicked,
             productFavoriteStateFlow = productFavoriteStateFlow,
