@@ -1,11 +1,14 @@
 package com.svoboda.ui
 
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.progressSemantics
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.unit.dp
 import coil.compose.SubcomposeAsyncImage
 import com.svoboda.ui.theme.LocalNotinoColors
 
@@ -27,12 +30,14 @@ fun RemoteImage(
     SubcomposeAsyncImage(
         model = url,
         loading = {
-            CircularProgressIndicator(
-                modifier = Modifier
-                    .align(Alignment.Center)
-                    .progressSemantics(),
-                color = LocalNotinoColors.current.colors.primary
-            )
+            Box(contentAlignment = Alignment.Center) {
+                CircularProgressIndicator(
+                    modifier = Modifier
+                        .size(32.dp)
+                        .progressSemantics(),
+                    color = LocalNotinoColors.current.colors.primary
+                )
+            }
         },
         contentDescription = contentDescription,
         contentScale = ContentScale.Fit,
