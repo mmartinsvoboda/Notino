@@ -26,7 +26,7 @@ import com.svoboda.ui.theme.Typography
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ProductsListScreen(viewModel: ProductsListViewModel) {
-    val uiStateState = viewModel.products.collectAsState()
+    val uiState = viewModel.products.collectAsState()
 
     Scaffold(
         topBar = {
@@ -41,7 +41,7 @@ fun ProductsListScreen(viewModel: ProductsListViewModel) {
         }
     ) { paddingValues ->
         UiStateContent(
-            uiState = uiStateState.value,
+            uiState = uiState.value,
             onNonSuccessStateButtonClicked = viewModel::loadAllProducts,
             onSuccess = { productList ->
                 LazyVerticalGrid(
