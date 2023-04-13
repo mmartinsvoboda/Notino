@@ -5,14 +5,13 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.svoboda.feature.products.R
 import com.svoboda.products.domain.model.Product
 import com.svoboda.ui.FavoriteButton
 import com.svoboda.ui.NotinoButton
@@ -89,7 +88,7 @@ fun ProductCard(
         Spacer(modifier = Modifier.height(12.dp))
 
         Text(
-            text = "od ${product.price.value} ${product.price.currency}",
+            text = stringResource(R.string.price_from, product.price.value, product.price.currency),
             modifier = Modifier.fillMaxWidth(),
             textAlign = TextAlign.Center,
             style = Typography.body2
@@ -97,16 +96,15 @@ fun ProductCard(
 
         Spacer(modifier = Modifier.height(12.dp))
 
+        var isInCart by remember {
+            mutableStateOf(Random.nextBoolean())
+        }
         NotinoButton(
-            onClick = { /*TODO*/ },
+            onClick = { isInCart = !isInCart },
             modifier = Modifier.align(Alignment.CenterHorizontally)
         ) {
-            val isInCart by remember {
-                mutableStateOf(Random.nextBoolean())
-            }
-
             Text(
-                text = if (isInCart) "V košíku" else "Do košíku",
+                text = if (isInCart) stringResource(R.string.in_cart) else stringResource(R.string.add_to_cart),
                 style = Typography.body2,
                 color = if (isInCart) LocalNotinoColors.current.tertiary else LocalNotinoColors.current.colors.primary
             )

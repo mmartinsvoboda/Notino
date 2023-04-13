@@ -15,8 +15,10 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.svoboda.architecture.UiState
+import com.svoboda.feature.products.R
 import com.svoboda.products.domain.model.Product
 import com.svoboda.products.list.presentation.compose.ProductCard
 import com.svoboda.ui.NotinoButton
@@ -33,7 +35,7 @@ fun ProductsListScreen(viewModel: ProductsListViewModel) {
             CenterAlignedTopAppBar(
                 title = {
                     Text(
-                        text = "Produkty",
+                        text = stringResource(R.string.products),
                         style = Typography.body1
                     )
                 },
@@ -88,10 +90,10 @@ fun ProductsListScreen(viewModel: ProductsListViewModel) {
                     verticalArrangement = Arrangement.Center,
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    Text(text = "Omlouváme se, něco se pokazilo.")
+                    Text(text = stringResource(R.string.error_apologize))
                     Spacer(modifier = Modifier.height(16.dp))
                     NotinoButton(onClick = viewModel::loadAllProducts) {
-                        Text(text = "Zkusit znovu")
+                        Text(text = stringResource(R.string.try_again))
                     }
                 }
             }
