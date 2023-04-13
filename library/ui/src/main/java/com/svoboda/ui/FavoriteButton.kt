@@ -15,15 +15,25 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.svoboda.ui.theme.LocalNotinoColors
 import kotlinx.coroutines.flow.Flow
 
+/**
+ * Composable for displaying a favorite button with two states - favorite and not favorite.
+ *
+ * @param onClick A lambda function that is executed when the button is clicked.
+ * @param isFavoriteFlow [Flow] of [Boolean] indicating the current favorite state.
+ * @param modifier [Modifier] to be applied to the composable.
+ * @param defaultColor [Color] to be used for the icon when not in the favorite state.
+ * @param favoriteColor [Color] to be used for the icon when in the favorite state.
+ */
 @Composable
 fun FavoriteButton(
     onClick: () -> Unit,
     isFavoriteFlow: Flow<Boolean>,
     modifier: Modifier = Modifier,
-    defaultColor: Color,
-    favoriteColor: Color
+    defaultColor: Color = LocalNotinoColors.current.tertiary,
+    favoriteColor: Color = LocalNotinoColors.current.pink
 ) {
     val isFavorite by isFavoriteFlow.collectAsState(initial = false)
 

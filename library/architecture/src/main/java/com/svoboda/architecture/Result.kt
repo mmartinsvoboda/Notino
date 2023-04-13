@@ -1,38 +1,65 @@
 package com.svoboda.architecture
 
+/**
+ * A sealed class representing the different results of an operation.
+ *
+ * @param T The type of data associated with the result.
+ */
 sealed class Result<out T> private constructor() {
+
+    /** Returns the associated value if present, or `null` otherwise. */
     abstract fun getOrNull(): T?
 
     companion object {
+        /** Creates a [Success] instance with the given [value]. */
         fun <T> success(value: T) = Success(value)
+
+        /** Creates a [Failure] instance with the given [message] and optional [value]. */
         fun <T> failure(message: String? = null, value: T? = null) = Failure(message, value)
+
+        /** Creates an [Error] instance with the given [throwable] and optional [value]. */
         fun <T> error(throwable: Throwable, value: T? = null) = Error(throwable, value)
     }
 
+    /** Represents the successful result of an operation with the associated [value]. */
     data class Success<T>(val value: T) : Result<T>() {
         override fun getOrNull(): T? = value
     }
 
+    /** Represents the failure result of an operation with an associated [message] and optional [value]. */
     data class Failure<T>(val message: String?, val value: T?) : Result<T>() {
         override fun getOrNull(): T? = value
     }
 
+    /** Represents the error result of an operation with an associated [throwable] and optional [value]. */
     data class Error<T>(val throwable: Throwable, val value: T?) : Result<T>() {
         override fun getOrNull(): T? = value
     }
 
+    // Helper functions to handle each Result case
+
+    /**
+     * Executes the [block] with the associated value if this is the [Success] case.
+     */
     inline fun onSuccess(block: (value: T) -> Unit): Result<T> = apply {
         if (this is Success) block(value)
     }
 
+    /**
+     * Executes the [block] with the associated message and value if this is the [Failure] case.
+     */
     inline fun onFailure(block: (message: String?, value: T?) -> Unit): Result<T> = apply {
         if (this is Failure) block(message, value)
     }
 
+    /**
+     * Executes the [block] with the associated [Throwable] and value if this is the [Error] case.
+     */
     inline fun onError(block: (throwable: Throwable, value: T?) -> Unit): Result<T> = apply {
         if (this is Error) block(throwable, value)
     }
 }
+
 
 /**
  * Map `value` of type [T] stored in [Result] to type [R] using [block]. And keep the type of [Result] to be the same (

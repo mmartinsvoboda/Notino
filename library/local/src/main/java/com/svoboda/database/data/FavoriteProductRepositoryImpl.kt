@@ -9,9 +9,7 @@ import kotlinx.coroutines.withContext
 class FavoriteProductRepositoryImpl(
     private val dao: FavoriteProductDao,
     private val dispatcher: CoroutineDispatcher
-    ) :
-    FavoriteProductRepository {
-
+) : FavoriteProductRepository {
     override fun observeAllFavoriteProducts(): Flow<List<Int>> =
         dao.getAllFavoriteProductIds()
 
@@ -25,5 +23,4 @@ class FavoriteProductRepositoryImpl(
     override suspend fun deleteFavoriteProduct(productId: Int) = withContext(dispatcher) {
         dao.delete(FavoriteProduct(productId))
     }
-
 }

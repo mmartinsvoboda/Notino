@@ -1,4 +1,4 @@
-package com.svoboda.network.koin
+package com.svoboda.network
 
 import okhttp3.OkHttpClient
 import org.koin.dsl.module

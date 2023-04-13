@@ -22,23 +22,28 @@ import com.svoboda.ui.theme.Typography
 import kotlinx.coroutines.flow.Flow
 import kotlin.random.Random
 
+/**
+ * Composable card for displaying product information.
+ *
+ * @param product [Product] instance representing the product to display.
+ * @param onProductLikeClicked Callback to handle the event when the favorite button is clicked.
+ * @param productFavoriteStateFlow [Flow] of [Boolean] representing the favorite state of the product.
+ */
 @Composable
 fun ProductCard(
     product: Product,
     onProductLikeClicked: (productId: Int) -> Unit,
     productFavoriteStateFlow: Flow<Boolean>
 ) {
+    val notinoColors = LocalNotinoColors.current
+
     Column(
         modifier = Modifier.fillMaxWidth()
     ) {
         FavoriteButton(
             modifier = Modifier.align(Alignment.End),
-            onClick = {
-                onProductLikeClicked(product.productId)
-            },
-            isFavoriteFlow = productFavoriteStateFlow,
-            defaultColor = LocalNotinoColors.current.tertiary,
-            favoriteColor = LocalNotinoColors.current.pink
+            onClick = { onProductLikeClicked(product.productId) },
+            isFavoriteFlow = productFavoriteStateFlow
         )
 
         RemoteImage(
@@ -57,7 +62,7 @@ fun ProductCard(
             modifier = Modifier.fillMaxWidth(),
             textAlign = TextAlign.Center,
             style = Typography.caption,
-            color = LocalNotinoColors.current.tertiary
+            color = notinoColors.tertiary
         )
 
         Spacer(modifier = Modifier.height(4.dp))
@@ -106,7 +111,7 @@ fun ProductCard(
             Text(
                 text = if (isInCart) stringResource(R.string.in_cart) else stringResource(R.string.add_to_cart),
                 style = Typography.body2,
-                color = if (isInCart) LocalNotinoColors.current.tertiary else LocalNotinoColors.current.colors.primary
+                color = if (isInCart) notinoColors.tertiary else notinoColors.colors.primary
             )
         }
 

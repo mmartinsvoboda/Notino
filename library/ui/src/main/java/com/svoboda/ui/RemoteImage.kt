@@ -13,6 +13,14 @@ import coil.compose.ImagePainter
 import coil.compose.rememberImagePainter
 import com.svoboda.ui.theme.LocalNotinoColors
 
+/**
+ * Composable for displaying a remote image using Coil library with a loading indicator.
+ *
+ * @param url [String] representing the URL of the image to load.
+ * @param contentDescription [String] describing the content of the image for accessibility purposes.
+ * @param modifier [Modifier] to be applied to the composable.
+ * @param alignment [Alignment] for the image.
+ */
 @OptIn(ExperimentalCoilApi::class)
 @Composable
 fun RemoteImage(
@@ -48,6 +56,4 @@ fun RemoteImage(
             )
         }
     }
-
-
 }

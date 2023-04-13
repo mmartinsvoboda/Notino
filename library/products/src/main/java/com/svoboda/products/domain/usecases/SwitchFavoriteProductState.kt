@@ -1,8 +1,10 @@
 package com.svoboda.products.domain.usecases
 
-import com.svoboda.database.domain.repository.FavoriteProductRepository
 import kotlinx.coroutines.flow.first
 
+/**
+ * Use case switches favorite state of a product.
+ */
 class SwitchFavoriteProductState(
     private val observeFavoriteProduct: ObserveFavoriteProduct,
     private val setFavoriteProduct: SetFavoriteProduct,
