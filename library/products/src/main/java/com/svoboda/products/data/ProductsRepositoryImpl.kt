@@ -1,5 +1,7 @@
 package com.svoboda.products.data
 
+import com.svoboda.architecture.Result
+import com.svoboda.architecture.map
 import com.svoboda.products.domain.model.Product
 import com.svoboda.products.domain.repository.ProductsRepository
 import kotlinx.coroutines.CoroutineDispatcher
@@ -9,15 +11,18 @@ class ProductsRepositoryImpl(
     private val api: ProductsApi,
     private val dispatcher: CoroutineDispatcher
 ) : ProductsRepository {
-    override suspend fun getProducts(): List<Product> = withContext(dispatcher) {
-        val products = try {
-            api.getProducts()
-        } catch (_: Throwable) {
-            ProductsDTO(emptyList())
-        }
+    override suspend fun getProducts(): Result<List<Product>> =
+        withContext(dispatcher) {
+            val products = try {
+                Result.success(api.getProducts())
+            } catch (t: Throwable) {
+                Result.error(t)
+            }
 
-        products.products.map {
-            it.toProduct()
+            products.map { productsDTO ->
+                productsDTO.products.map { productDTO ->
+                    productDTO.toProduct()
+                }
+            }
         }
-    }
 }

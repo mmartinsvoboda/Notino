@@ -24,7 +24,6 @@ val libProductsModule = module {
     }
 
     factory { GetProducts(get()) }
-    factory { GetProductsWithFavoriteInfo(get(), get(), Dispatchers.IO) }
     factory { ObserveAllFavoriteProducts(get()) }
     factory { ObserveFavoriteProduct(get()) }
     factory { SetFavoriteProduct(get()) }

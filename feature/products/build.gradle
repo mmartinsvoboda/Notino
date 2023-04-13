@@ -44,6 +44,7 @@ dependencies {
 
     implementation project(":library:products")
     implementation project(":library:ui")
+    implementation project(":library:architecture")
 
     implementation "io.insert-koin:koin-android:$koin_version"
 

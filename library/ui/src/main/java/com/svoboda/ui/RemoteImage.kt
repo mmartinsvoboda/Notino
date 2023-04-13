@@ -1,11 +1,19 @@
 package com.svoboda.ui
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.progressSemantics
+import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
+import coil.annotation.ExperimentalCoilApi
+import coil.compose.ImagePainter
 import coil.compose.rememberImagePainter
+import com.svoboda.ui.theme.LocalNotinoColors
 
+@OptIn(ExperimentalCoilApi::class)
 @Composable
 fun RemoteImage(
     url: String,
@@ -16,16 +24,30 @@ fun RemoteImage(
     val painter = rememberImagePainter(
         data = url,
         builder = {
-            crossfade(true) // Pokud chcete přechodový efekt
-            // Přidejte další konfigurace dle potřeby, např. zástupný obrázek, atd.
+            crossfade(true)
         }
     )
 
-    Image(
-        painter = painter,
-        contentDescription = contentDescription,
+    Box(
         modifier = modifier,
-        alignment = alignment
-        // Přidejte další modifikátory dle potřeby, např. velikost, zarovnání, atd.
-    )
+        contentAlignment = Alignment.Center
+    ) {
+        Image(
+            painter = painter,
+            contentDescription = contentDescription,
+            alignment = alignment,
+            contentScale = ContentScale.Fit
+        )
+
+        if (painter.state is ImagePainter.State.Loading) {
+            CircularProgressIndicator(
+                modifier = Modifier
+                    .align(Alignment.Center)
+                    .progressSemantics(),
+                color = LocalNotinoColors.current.colors.primary
+            )
+        }
+    }
+
+
 }
