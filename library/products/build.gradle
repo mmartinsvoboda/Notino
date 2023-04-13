@@ -35,4 +35,9 @@ dependencies {
 
     // koin
     implementation "io.insert-koin:koin-android:$koin_version"
+
+    // test
+    testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4'
+    testImplementation 'junit:junit:4.13.2'
+    testImplementation 'org.mockito:mockito-core:4.1.0'
 }
